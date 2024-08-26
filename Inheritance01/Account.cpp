@@ -20,7 +20,7 @@ void Account::deposit(double amount) {
 void Account::withdraw(double amount) {
 
   std::cout 
-    << "Account withdraw called with"
+    << "Account withdraw called with "
     << amount
     << std::endl;
 }

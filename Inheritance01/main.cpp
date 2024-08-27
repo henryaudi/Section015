@@ -37,6 +37,7 @@ int main() {
   p_sav_acc = new Savings_Account();
   p_sav_acc -> deposit(1000000.00);
   p_sav_acc -> withdraw(200.00);
+  delete p_sav_acc;
 
   return 0;
 }

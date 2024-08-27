@@ -19,14 +19,23 @@ private:
   int double_value;
 
 public:
-  Derived(): double_value {0} { cout << "Derived no-args constructor" << endl; }
-  Derived(int x): double_value {x} { cout << "Derived (int) overloaded constructor" << endl; }
+  Derived()
+    : Base {}, double_value {0} { 
+      cout << "Derived no-args constructor" << endl; 
+  }
+  
+  Derived(int x)
+    : Base {x},  double_value {x * 2} {
+      cout << "Derived (int) overloaded constructor" << endl; 
+  }
+  
   ~Derived() { cout << "Derived destructor" << endl; }
 };
 
 int main() {
 
   Derived d;
+  Derived d_val {123};
 
   return 0;
 }

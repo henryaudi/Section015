@@ -20,7 +20,7 @@ public:
   /* Overloaded assignment operator */
   Base &operator=(const Base &rhs) {
     cout << "Base operator = " << endl;
-    if (this == &rhs) { return this; }
+    if (this == &rhs) { return *this; }
     value = rhs.value;
 
     return *this;
@@ -29,7 +29,7 @@ public:
   ~Base() { cout << "Base desctructor" << endl; }
 };
 
-class Derived : public Base {
+class Derived: public Base {
 private:
   int double_value;
 
@@ -44,6 +44,19 @@ public:
       cout << "Derived (int) overloaded constructor" << endl; 
     }
   
+  Derived(const Derived &other)
+    : Base(other), double_value {other.double_value} {
+      cout << "Derive copy constructor" << endl;
+    }
+
+  Derived &operator=(const Derived &rhs) {
+    cout << "Derived operator=" << endl;
+    if (this == &rhs) { return *this; }
+    Base::operator=(rhs);
+    double_value = rhs.double_value;
+    return *this;
+  }
+
   ~Derived() { cout << "Derived destructor" << endl; }
 };
 
@@ -51,6 +64,7 @@ int main() {
 
   Derived d;
   Derived d_val {123};
+  d = d_val;
 
   return 0;
 }
